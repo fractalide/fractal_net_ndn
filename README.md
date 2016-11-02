@@ -1,35 +1,20 @@
-## Fractalide Workbench
+# frac_net_ndn
+## Fractalide; Networking; Named Data Networking
 
-![Image Alt](https://www.woodgears.ca/workshop/jacques/004.jpg)
-
-This repository serves as your workbench, this is where you craft new things and try out interesting ideas. A new workspace for a new idea!
-Whereas the [canonical](https://github.com/fractalide/fractalide) fractalide repo is your tool rack. The tool rack is where useful, successful ideas forged on your workbench go to live a new life, to be further used and refined by the community! Please consider [plugging](https://github.com/fractalide/fractalide/blob/master/components/example/wrangle/default.nix#L8-L15) your works into fractalide so that we all can benefit from it!
-
-Typically we refer to this repository as a `frac`. It's like a library or module in a programming language, but it's much more nuanced than that! There's a hierarchical naming convention, we as a community should abide by! Please note the repository name starts with `frac`, i.e.: `frac_a_decent_hierarchical_project_name` such as `frac_net_http` or `frac_science_biology_dna_crispr`. This is purely to keep all `fractalide` projects in close proximity to each other on the file system. Within this repo all components and contracts in the `components/` and `contracts/` folders *do not* have the preceding `frac_*`, use names like this: `science_biology_dna_crispr` i.e. `science_biology_dna_crispr_reader` etc.
-```
-workbench_nand = callPackage ./workbench/nand {};
-workbench_test = callPackage ./workbench/test {};
-```
-You're encouraged to make this repo your own and put it under new version control. It contains 1 rust component, 1 subnet and 1 contract and some `utils` stuff to automate the creation of new components. We're still developing a spiffy terminal based graph editor that'll really make it a lot simpler to design things. Till then python scripts will have to suffice!
-
-We encourage you to use [Mozilla Public License v2](LICENSE) for your project. This makes it very easy for the community to mix and match components, this is key to our success as a community.
-We also encourage you to use the [C4](CONTRIBUTING.md) to govern your project, having the same governance across projects means patches will fly fast and efficiently. It would be really nice if everyone was tuned to the same note before we start this symphony!
-
-Feel free to take this code and do what you will with it, even if it means close source it.
-
-If you want to make use of Incremental Builds (you really do) then you'll need to plug this project into a clone of Fractalide and build from within the Fractalide folder. See Fractalide's [README.md](https://github.com/fractalide/fractalide) for more details
-
+![Image Alt](http://images.cnitblog.com/blog/502711/201407/250109536504481.png)
 ---
-
 * Project Description:
-... <describe your project>
-* Project Problem:
-... <clear problem description, the cause for this project>
+
+"The Named Data Networking (NDN) project aims to develop a new Internet architecture that can capitalize on strengths — and address weaknesses — of the Internet’s current host-based, point-to-point communication architecture in order to naturally accommodate emerging patterns of communication. By naming data instead of their locations, NDN transforms data into a first-class entity. The current Internet secures the data container. NDN secures the contents, a design choice that decouples trust in data from trust in hosts, enabling several radically scalable communication mechanisms such as automatic caching to optimize bandwidth." - https://named-data.net
+* Problem:
+
+Microservices generally have zero to no security. Extracting data from a location requires a lot of wetware.
 * Solution:
-... <describe solution your project has taken>
+
+Named Data Networking lifts application development to using names and builds security into the protocol.
 * Stability:
-Choose one:
-[Experimental, Stable, Legacy, Deprecate]
+
+Experimental
 
 ### Build Instructions
 Make sure you have installed [nix](https://nixos.org/nix) installed, most likely your package manage has `nix` available, if not you'll need to compile from source.
