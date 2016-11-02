@@ -1,21 +1,25 @@
 { stdenv, buildFractalideSubnet, upkeepers
-  , net_ndn_relay
+  , net_ndn_router
   , ...}:
 
 buildFractalideSubnet rec {
   src = ./.;
   subnet = ''
-    // when an interest arrives your app needs to satisfy it if possible with data
-    relay(${net_ndn_relay}) interest => interest
+  // Interests
+  // 1) incoming interests from local apps and forwarded to remote apps
+    outbound_interest => outbound_interest router(${net_ndn_router})
+  // 2) incoming interests from remote apps and forwarded to local apps
+    router() inbound_interest => inbound_interest
+  // 3) incoming interests from remote apps and forwarded to remote apps
+  // moot
 
-    // responding to the above interest
-    data => data relay()
-
-    // when your app has an interest
-    interest => interest relay()
-
-    // the response to the interest your app just expressed
-    relay() data => data
+  // Data
+  // 1) incoming data from local apps and forwarded to remote apps
+    outbound_data => outbound_data router()
+  // 2) incoming data from remote apps and forwarded to local apps
+    router() inbound_data => inbound_data
+  // 3) incoming data from remote apps and forwarded to remote apps
+  // moot
   '';
 
   meta = with stdenv.lib; {

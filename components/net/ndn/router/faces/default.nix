@@ -8,7 +8,6 @@ buildFractalideSubnet rec {
   subnet = ''
   // receiver receives packets coming from the ndn network
   // sender "sends" packets onto the ndn network
-  '${protocol_domain_port}:(protocol="ws://",domain="127.0.0.1",port=8888)' -> start relay({net_websocket_server})
   '${protocol_domain_port}:(protocol="ws://",domain="127.0.0.1",port=8888)' -> option relay()
 
     // when an interest arrives your app needs to satisfy it if possible with data

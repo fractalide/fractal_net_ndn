@@ -97,11 +97,12 @@ buildFractalideSubnet rec {
 //    <--  DOWNSTREAM                                   UPSTREAM -->
 //                  hit = lookup hit - miss = lookup miss
 
-'${protocol_domain_port}:(protocol="ws://",domain="127.0.0.1",port=8888)' -> start faces(${net_ndn_router_faces})
-'${protocol_domain_port}:(protocol="ws://",domain="127.0.0.1",port=8888)' -> option faces(${net_ndn_router_faces})
+option => option faces(${net_ndn_router_faces})
+
+outbound_interest => outbound_interest faces()
 
 // Interest path
-  faces(${net_ndn_router_faces}) interest -> lookup_interest cs(${net_ndn_router_cs}) interest_hit ->
+  faces() interest -> lookup_interest cs(${net_ndn_router_cs}) interest_hit ->
       forward_interest faces()
   cs() interest_miss -> lookup_interest pit(${net_ndn_router_pit}) interest_miss -> // also create PIT entry
       lookup_interest fib(${net_ndn_router_fib}) // if fib() interest_miss then drop NACK and Interest
@@ -117,7 +118,7 @@ buildFractalideSubnet rec {
 
   meta = with stdenv.lib; {
     description = "Subnet: net_ndn_router; Named Data Networking";
-    homepage = https://github.com/fractalide/fractalide/tree/master/components/net/ndn;
+    homepage = https://github.com/fractalide/frac_net_ndn/tree/master/components/net/ndn;
     license = with licenses; [ mpl20 ];
     maintainers = with upkeepers; [ dmichiels sjmackenzie];
   };
