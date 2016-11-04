@@ -19,9 +19,9 @@ buildFractalideSubnet rec {
   '${net_ndn_interest}:(name="interest1",nonce=111)' -> outbound_interest[1] ndn()
   '${net_ndn_interest}:(name="interest2",nonce=222)' -> outbound_interest[2] ndn()
 
-  '${generic_text}:(name="interest0")' -> option proc_interest0(${net_ndn_test_procinterest})
-  '${generic_text}:(name="interest1")' -> option proc_interest1(${net_ndn_test_procinterest})
-  '${generic_text}:(name="interest2")' -> option proc_interest2(${net_ndn_test_procinterest})
+  '${generic_text}:(text="interest0")' -> option proc_interest0(${net_ndn_test_procinterest})
+  '${generic_text}:(text="interest1")' -> option proc_interest1(${net_ndn_test_procinterest})
+  '${generic_text}:(text="interest2")' -> option proc_interest2(${net_ndn_test_procinterest})
 
   ndn() inbound_interest[0] -> inbound_interest proc_interest0()
   ndn() inbound_interest[1] -> inbound_interest proc_interest1()
