@@ -1,16 +1,8 @@
-{ stdenv, buildFractalideSubnet, upkeepers
-  , ndn
-  , test_procinterest
-  , print
-  # contracts
-  , interest
-  , generic_text
-  , protocol_domain_port
-  , ...}:
+{ subnet, components, contracts }:
 
-buildFractalideSubnet rec {
+subnet {
   src = ./.;
-  subnet = ''
+  flowscript = with components; with contracts; ''
   // receiver receives packets coming from the ndn network
   // sender "sends" packets onto the ndn network
   '${protocol_domain_port}:(protocol="", domain="localhost", port="44444")' -> option ndn(${ndn})
@@ -35,11 +27,4 @@ buildFractalideSubnet rec {
   ndn() inbound_data[1] -> data print()
   ndn() inbound_data[2] -> data print()
   '';
-
-  meta = with stdenv.lib; {
-    description = "Subnet: ndn; Named Data Networking";
-    homepage = https://github.com/fractalide/fractalide/tree/master/components/net/ndn;
-    license = with licenses; [ mpl20 ];
-    maintainers = with upkeepers; [ dmichiels sjmackenzie];
-  };
 }

@@ -1,11 +1,8 @@
-{ stdenv, buildFractalideSubnet, upkeepers
-  , ndn_faces_router
-  , ndn_faces_socket
-  , ...}:
+{ subnet, components, contracts }:
 
-buildFractalideSubnet rec {
+subnet {
   src = ./.;
-  subnet = ''
+  flowscript = with components; with contracts; ''
   // receiver receives packets coming from the ndn network
   // sender "sends" packets onto the ndn network
     option => option socket(${ndn_faces_socket})
@@ -24,11 +21,4 @@ buildFractalideSubnet rec {
     // the response to the interest your app just expressed
     router() data => data
   '';
-
-  meta = with stdenv.lib; {
-    description = "Subnet: net_ndn; Named Data Networking";
-    homepage = https://github.com/fractalide/fractalide/tree/master/components/net/ndn/router;
-    license = with licenses; [ mpl20 ];
-    maintainers = with upkeepers; [ dmichiels sjmackenzie];
-  };
 }

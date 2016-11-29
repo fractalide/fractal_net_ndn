@@ -1,10 +1,8 @@
-{ stdenv, buildFractalideSubnet, upkeepers
-  , ndn_faces
-  , ...}:
+{ subnet, components, contracts }:
 
-buildFractalideSubnet rec {
+subnet {
   src = ./.;
-  subnet = ''
+  flowscript = with components; with contracts; ''
   // Interests
   // 1) incoming interests from local apps and forwarded to remote apps
     outbound_interest => outbound_interest faces(${ndn_faces})
@@ -21,11 +19,4 @@ buildFractalideSubnet rec {
   // 3) incoming data from remote apps and forwarded to remote apps
   // moot
   '';
-
-  meta = with stdenv.lib; {
-    description = "Subnet: net_ndn; Named Data Networking";
-    homepage = https://github.com/fractalide/fractalide/tree/master/components/net/ndn;
-    license = with licenses; [ mpl20 ];
-    maintainers = with upkeepers; [ dmichiels sjmackenzie];
-  };
 }

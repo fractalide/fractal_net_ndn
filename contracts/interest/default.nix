@@ -1,8 +1,9 @@
-{stdenv, buildFractalideContract, upkeepers, ...}:
+{ contract, contracts }:
 
-buildFractalideContract rec {
+contract {
   src = ./.;
-  contract = ''
+  importedContracts = with contracts; [ ];
+  schema = with contracts; ''
   @0xda3ac78deff8e9e9;
 
   struct Interest {
@@ -10,11 +11,4 @@ buildFractalideContract rec {
     nonce @1 :Int32;
   }
   '';
-
-  meta = with stdenv.lib; {
-    description = "Contract: Describes a Named Data Network Interest";
-    homepage = https://github.com/fractalide/fractalide/tree/master/contracts/net/ndn/interest;
-    license = with licenses; [ mpl20 ];
-    maintainers = with upkeepers; [ dmichiels sjmackenzie];
-  };
 }

@@ -1,6 +1,7 @@
-{ pkgs, support, allContracts, allComponents, ... }:
+{ buffet }:
+
 let
-callPackage = pkgs.lib.callPackageWith (pkgs // support // allContracts // allComponents);
+callPackage = buffet.pkgs.lib.callPackageWith (buffet // buffet.support );
 self = rec { # use one line only to insert a component (utils/new_component.py sorts this list)
   ndn = callPackage ./ndn {};
   ndn_faces = callPackage ./ndn/faces {};
@@ -11,7 +12,7 @@ self = rec { # use one line only to insert a component (utils/new_component.py s
   ndn_faces_router_pit = callPackage ./ndn/faces/router/pit {};
   ndn_faces_socket = callPackage ./ndn/faces/socket {};
   print = callPackage ./print {};
-  test_local = callPackage ./test/local {};
+  test = callPackage ./test/local {};
   test_procinterest = callPackage ./test/procinterest {};
 }; # use one line only to insert a component (utils/new_component.py sorts this list)
 in

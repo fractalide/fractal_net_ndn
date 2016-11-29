@@ -1,15 +1,8 @@
-{ stdenv, buildFractalideSubnet, upkeepers
-  , ndn_faces_router_cs
-  , ndn_faces_router_fib
-  , ndn_faces_router_pit
-  , drop_ip
-  # contracts
-  , protocol_domain_port
-  , ...}:
+{ subnet, components, contracts }:
 
-buildFractalideSubnet rec {
+subnet {
   src = ./.;
-  subnet = ''
+  flowscript = with components; with contracts; ''
 // https://www.cs.arizona.edu/~yic/paper/dissertation.pdf
 
 // Content Store
@@ -97,13 +90,6 @@ buildFractalideSubnet rec {
 //                  hit = lookup hit - miss = lookup miss
 
   '';
-
-  meta = with stdenv.lib; {
-    description = "Subnet: net_ndn_router; Named Data Networking";
-    homepage = https://github.com/fractalide/frac_net_ndn/tree/master/components/net/ndn;
-    license = with licenses; [ mpl20 ];
-    maintainers = with upkeepers; [ dmichiels sjmackenzie];
-  };
 }
 /*
 option => option faces(${ndn_faces})
