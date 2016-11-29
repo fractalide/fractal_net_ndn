@@ -2,15 +2,17 @@
 let
 callPackage = pkgs.lib.callPackageWith (pkgs // support // allContracts // allComponents);
 self = rec { # use one line only to insert a component (utils/new_component.py sorts this list)
-  net_ndn = callPackage ./net/ndn {};
-  net_ndn_print = callPackage ./net/ndn/print {};
-  net_ndn_router = callPackage ./net/ndn/router {};
-  net_ndn_router_cs = callPackage ./net/ndn/router/cs {};
-  net_ndn_router_faces = callPackage ./net/ndn/router/faces {};
-  net_ndn_router_fib = callPackage ./net/ndn/router/fib {};
-  net_ndn_router_pit = callPackage ./net/ndn/router/pit {};
-  net_ndn_test_local = callPackage ./net/ndn/test/local {};
-  net_ndn_test_procinterest = callPackage ./net/ndn/test/procinterest {};
+  ndn = callPackage ./ndn {};
+  ndn_faces = callPackage ./ndn/faces {};
+  ndn_faces_router = callPackage ./ndn/faces/router {};
+  ndn_faces_router_cs = callPackage ./ndn/faces/router/cs {};
+  ndn_faces_router_faces = callPackage ./ndn/faces/router/faces {};
+  ndn_faces_router_fib = callPackage ./ndn/faces/router/fib {};
+  ndn_faces_router_pit = callPackage ./ndn/faces/router/pit {};
+  ndn_faces_socket = callPackage ./ndn/faces/socket {};
+  print = callPackage ./print {};
+  test_local = callPackage ./test/local {};
+  test_procinterest = callPackage ./test/procinterest {};
 }; # use one line only to insert a component (utils/new_component.py sorts this list)
 in
 self
