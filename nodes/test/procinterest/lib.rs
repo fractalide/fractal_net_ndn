@@ -1,31 +1,25 @@
-#![feature(question_mark)]
 #[macro_use]
 extern crate rustfbp;
 extern crate capnp;
 
 agent! {
-  net_ndn_test_procinterest, edges(interest, data, generic_text)
-  inputs(),
-  inputs_array(inbound_interest: interest),
-  outputs(),
-  outputs_array(outbound_data: data),
+  input(inbound_interest: interest),
+  output(outbound_data: data),
   option(generic_text),
-  acc(),
-  fn run(&mut self) -> Result<()> {
+  fn run(&mut self) -> Result<Signal> {
 
-    let mut ip_inbound_interest = self.ports.recv("inbound_interest")?;
+    let mut ip_inbound_interest = self.input.inbound_interest.recv()?;
     let inbound_interest = {
         let inbound_interest_reader: interest::Reader = ip_inbound_interest.read_schema()?;
         inbound_interest_reader.get_name() // read contract: interest to replace XXX
     };
-    let mut out_ip_outbound_data = IP::new();
+    let mut out_msg_outbound_data = Msg::new();
     {
-      let mut variable = out_ip_outbound_data.build_schema::<data::Builder>();
+      let mut variable = out_msg_outbound_data.build_schema::<data::Builder>();
       variable.set_name("YYY"); // read contract: data to replace XXX
     }
-    for p in self.ports.get_output_selections("outbound_data")? {
-        self.ports.send_array("outbound_data", &p, out_ip_outbound_data.clone())?;
-    }
-    Ok(())
+    self.output.outbound_data.send(out_msg_outbound_data)?;
+
+    Ok(End)
   }
 }
