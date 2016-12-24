@@ -2,6 +2,7 @@
 
 subgraph {
   src = ./.;
+  edges = with edges; [ ];
   flowscript = with nodes; with edges; ''
   // receiver receives packets coming from the ndn network
   // sender "sends" packets onto the ndn network

@@ -2,6 +2,7 @@
 
 subgraph {
   src = ./.;
+  edges = with edges; [ ];
   flowscript = with nodes; with edges; ''
   // Interests
   // 1) incoming interests from local apps and forwarded to remote apps
