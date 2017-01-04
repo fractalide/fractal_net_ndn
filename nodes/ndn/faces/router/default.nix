@@ -105,7 +105,7 @@ lookup_interest fib(${ndn_faces_router_fib}) // if fib() interest_miss then drop
 fib() interest_hit -> forward_interest faces()
 
 // Data path
-faces() data_arrived -> lookup_data pit() // if data_miss -> drop drop_ip()
+faces() data_arrived -> lookup_data pit() // if data_miss -> drop msg_drop()
 pit() data_hit[0] -> cache_data cs()
 pit() data_hit[1] -> forward_data faces()
 // if pit() data_hit[_] then delete PIT entry*/

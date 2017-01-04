@@ -5,7 +5,7 @@ extern crate capnp;
 agent! {
   input(inbound_interest: interest),
   output(outbound_data: data),
-  option(generic_text),
+  option(prim_text),
   fn run(&mut self) -> Result<Signal> {
 
     let mut ip_inbound_interest = self.input.inbound_interest.recv()?;
