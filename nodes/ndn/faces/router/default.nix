@@ -2,7 +2,6 @@
 
 subgraph {
   src = ./.;
-  edges = with edges; [ ];
   flowscript = with nodes; with edges; ''
 // https://www.cs.arizona.edu/~yic/paper/dissertation.pdf
 

@@ -2,7 +2,6 @@
 
 subgraph {
   src = ./.;
-  edges = with edges; [ net_protocol_domain_port interest prim_text ];
   flowscript = with nodes; with edges; ''
   // receiver receives packets coming from the ndn network
   // sender "sends" packets onto the ndn network
