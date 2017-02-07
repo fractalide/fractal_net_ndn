@@ -2,7 +2,7 @@
 
 agent {
   src = ./.;
-  edges = with edges; [ interest ];
+  edges = with edges; [ NetNdnInterest ];
   crates = with crates; [ rustfbp capnp ];
   osdeps = with pkgs; [];
 }

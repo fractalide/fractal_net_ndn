@@ -2,7 +2,7 @@
 
 agent {
   src = ./.;
-  edges = with edges; [ interest data prim_text ];
+  edges = with edges; [ NetNdnInterest NetNdnData PrimText ];
   crates = with crates; [ rustfbp capnp ];
   osdeps = with pkgs; [];
 }
