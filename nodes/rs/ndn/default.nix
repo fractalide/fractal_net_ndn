@@ -2,7 +2,7 @@
 
 subgraph {
   src = ./.;
-  flowscript = with nodes; with edges; ''
+  flowscript = with nodes.rs; ''
   // Interests
   // 1) incoming interests from local apps and forwarded to remote apps
     outbound_interest => outbound_interest faces(${ndn_faces})

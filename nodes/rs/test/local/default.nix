@@ -13,7 +13,7 @@ let
 in
 subgraph {
   src = ./.;
-  flowscript = with nodes; ''
+  flowscript = with nodes.rs; ''
   // receiver receives packets coming from the ndn network
   // sender "sends" packets onto the ndn network
   '${NetProtocolDomainPort}' -> option ndn(${ndn})

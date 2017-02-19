@@ -2,7 +2,7 @@
 
 subgraph {
   src = ./.;
-  flowscript = with nodes; with edges; ''
+  flowscript = with nodes.rs; ''
   // receiver receives packets coming from the ndn network
   // sender "sends" packets onto the ndn network
     option => option socket(${ndn_faces_socket})

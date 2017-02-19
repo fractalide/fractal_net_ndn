@@ -2,7 +2,7 @@
 
 subgraph {
   src = ./.;
-  flowscript = with nodes; with edges; ''
+  flowscript = with nodes.rs; ''
 // https://www.cs.arizona.edu/~yic/paper/dissertation.pdf
 
 // Content Store
